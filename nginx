@@ -1,3 +1,5 @@
+#! /bin/bash
+
 awk 'BEGIN{ PROCINFO["sorted_in"]="@val_num_desc" }
      { a[$1]++; b[$1]+=$10 }
      END{ 
