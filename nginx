@@ -1,6 +1,5 @@
-cat /var/log/nginx/access.log |awk {'print $1'}|sort|uniq -c|sort -n|tail
-
-# 1 85.198.60.188
-# 2 212.83.140.139
-# 2 52.191.0.244
-# 9 122.162.146.101 
+awk 'BEGIN{ PROCINFO["sorted_in"]="@val_num_desc" }
+     { a[$1]++; b[$1]+=$10 }
+     END{ 
+         for(i in a) { if(++c>10) break; print i,b[i] } 
+     }' /var/log/nginx/access.log
